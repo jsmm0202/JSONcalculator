@@ -12,8 +12,10 @@ namespace Currency_calculator
 
         public string CalculateNextState(string jsonState, string input)
         {
-            // if it is the first time the function is called, creat a new object
-            if (jsonState == null)
+            // if it is the first time the function is called,
+            // or if it is called after previus calculation is done,
+            // creat a new object
+            if (jsonState == null || jsonStateObj.IsLastInputAnEqualsOperator)
             {
                 jsonStateObj = new JsonState();
             }
@@ -94,7 +96,7 @@ Two operators must be separated by numbers.");
             // add the operator to the operators list
             jsonStateObj.Operators.Add(inp);
 
-            // add the last dispayed number to the list of numbers
+            // add the last displayed number to the list of numbers
             jsonStateObj.Numbers.Add(int.Parse(jsonStateObj.Display));
 
             jsonStateObj.IsLastInputAnOperator = true;
@@ -145,6 +147,8 @@ The Structure of the equation is not right.");
             }
 
             jsonStateObj.Display = res.ToString();
+
+            jsonStateObj.IsLastInputAnEqualsOperator = true;
         }
     }
 }
