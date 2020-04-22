@@ -11,3 +11,6 @@
        - checkout
        - run: dotnet build Currency-calculator\Currency-calculator
        - run: dotnet test Currency-calculator
+       - store_test_results:
+            path: test-results
+
