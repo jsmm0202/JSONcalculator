@@ -10,7 +10,7 @@
      steps:
        - checkout
        - run: dotnet build Currency-calculator\Currency-calculator
-       - run: dotnet test Currency-calculator
+       - run: dotnet test Currency-calculator --test-adapter-path:. --logger:xunit
        - store_test_results:
             path: Currency-calculator\Currency_calculator.Tests\TestResults
 
