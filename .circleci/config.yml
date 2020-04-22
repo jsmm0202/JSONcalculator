@@ -9,4 +9,4 @@
     
      steps:
        - checkout
-       - run: dotnet build Currency-calculator\Currency-calculator\Currency-calculator
+       - run: dotnet build Currency-calculator\Currency-calculator
