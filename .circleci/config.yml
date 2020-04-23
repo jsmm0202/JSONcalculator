@@ -4,7 +4,7 @@
   win: circleci/windows@2.2.0
 
  jobs:
-   build:
+   run-unit-tests:
      executor: win/default     
     
      steps:
