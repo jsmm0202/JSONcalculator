@@ -15,6 +15,6 @@ jobs:
 
 workflows:
     version: 2
-    Calculator_Workflow:
+    Workflow:
         jobs:
             - run-unit-tests
