@@ -71,6 +71,22 @@ namespace Currency_calculator.Tests
         }
 
         [Fact]
+        public void Test_RoundDown7div2equals3()
+        {
+            var calculator = new Calculator();
+            string jsonState = null;
+
+            var inputs = new List<string>() { "7", "/", "2", "=" };
+
+            foreach (var input in inputs)
+            {
+                jsonState = calculator.CalculateNextState(jsonState, input);
+            }
+
+            Assert.Equal("3", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+        }
+
+        [Fact]
         public void Test_AllSteps()
         {
             var calculator = new Calculator();

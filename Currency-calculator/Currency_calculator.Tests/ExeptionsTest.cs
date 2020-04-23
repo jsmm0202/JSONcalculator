@@ -74,5 +74,23 @@ Two operators must be separated by numbers.", ex.Message);
 Two operators must be separated by numbers.", ex.Message);
             }
         }
+
+        [Fact]
+        public void Test_AttemptedToDivideByZero()
+        {
+            var calculator = new Calculator();
+            string jsonState = null;
+            jsonState = calculator.CalculateNextState(jsonState, "5");
+            jsonState = calculator.CalculateNextState(jsonState, "/");
+            jsonState = calculator.CalculateNextState(jsonState, "0");
+            try
+            {
+                jsonState = calculator.CalculateNextState(jsonState, "=");
+            }
+            catch (Exception ex)
+            {
+                Assert.Equal(@"Attempted to divide by zero.", ex.Message);
+            }
+        }
     }
 }

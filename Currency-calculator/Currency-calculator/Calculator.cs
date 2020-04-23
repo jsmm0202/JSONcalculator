@@ -14,7 +14,7 @@ namespace Currency_calculator
         {
             // if it is the first time the function is called,
             // or if it is called after previus calculation is done,
-            // creat a new object
+            // create a new object
             if (jsonState == null || jsonStateObj.IsLastInputAnEqualsOperator)
             {
                 jsonStateObj = new JsonState();
@@ -125,7 +125,7 @@ The Structure of the equation is not right.");
             }
 
             // iterate over the lists of numbers and operators by the order of the input
-            // and comute the final value that needs to be displayed
+            // and compute the final value that needs to be displayed
             int res = jsonStateObj.Numbers[0];
             for (int i = 1; i < jsonStateObj.Numbers.Count; i++)
             {
