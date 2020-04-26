@@ -10,9 +10,9 @@ namespace Currency_calculator
             var calculator = new Calculator();
             string jsonState = null;
 
-            System.Console.WriteLine("please enter an input");
             while (true)
             {
+                Console.WriteLine("please enter an input");
                 var input = Console.ReadLine();
 
                 try
