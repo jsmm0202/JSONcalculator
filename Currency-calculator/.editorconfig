@@ -14,3 +14,6 @@ dotnet_diagnostic.SA1101.severity = silent
 
 # SA1310: Field names should not contain underscore
 dotnet_diagnostic.SA1310.severity = silent
+
+# SA1309: Field names should not begin with underscore
+dotnet_diagnostic.SA1309.severity = silent

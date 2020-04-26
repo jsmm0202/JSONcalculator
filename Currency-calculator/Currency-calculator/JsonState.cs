@@ -13,6 +13,8 @@ namespace Currency_calculator
             Display = string.Empty;
         }
 
+        public string Display { get; set; }
+
         public bool IsLastInputAnOperator { get; set; }
 
         public bool IsLastInputAnEqualsOperator { get; set; }
@@ -20,7 +22,5 @@ namespace Currency_calculator
         public List<int> Numbers { get; set; }
 
         public List<char> Operators { get; set; }
-
-        public string Display { get; set; }
     }
 }
