@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace Currency_calculator.WebServer
@@ -8,30 +10,50 @@ namespace Currency_calculator.WebServer
     {
         public static string SendResponse(HttpListenerRequest request)
         {
-            System.IO.Stream body = request.InputStream;
-            System.Text.Encoding encoding = request.ContentEncoding;
-            System.IO.StreamReader reader = new System.IO.StreamReader(body, encoding);
-
-            string stringRequest = reader.ReadToEnd();
-            body.Close();
-            reader.Close();
+            string stringRequest = string.Empty;
+            using (Stream body = request.InputStream)
+            {
+                if (body != null)
+                {
+                    using (StreamReader reader = new StreamReader(body))
+                    {
+                        stringRequest = reader.ReadToEnd();
+                    }
+                }
+            }
 
             string input = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).input;
             string calculatorState = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).calculatorState;
 
             var calculator = new Calculator();
-            var jsonState = calculator.CalculateNextState(calculatorState, input);
+            string jsonState;
+            try
+            {
+                jsonState = calculator.CalculateNextState(calculatorState, input);
+            }
+            catch (Exception ex)
+            {
+                jsonState = ex.Message;
+            }
+
             Console.WriteLine(jsonState);
             return jsonState;
         }
 
         private static void Main(string[] args)
         {
-            var ws = new WebServer(SendResponse, "http://localhost:3000/calculate/");
-            ws.Run();
-            Console.WriteLine("A simple webserver. Press a key to quit.");
-            Console.ReadKey();
-            ws.Stop();
+            try
+            {
+                var ws = new WebServer(SendResponse, "http://localhost:3000/calculate/");
+                ws.Run();
+                Console.WriteLine("Press a key to quit.");
+                Console.ReadKey();
+                ws.Stop();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

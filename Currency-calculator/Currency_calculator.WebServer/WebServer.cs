@@ -12,27 +12,8 @@ namespace Currency_calculator.WebServer
         private readonly Func<HttpListenerRequest, string> _responderMethod;
 
         public WebServer(Func<HttpListenerRequest, string> method, params string[] prefixes)
-        : this(prefixes, method)
         {
-        }
-
-        public WebServer(IReadOnlyCollection<string> prefixes, Func<HttpListenerRequest, string> method)
-        {
-            if (!HttpListener.IsSupported)
-            {
-                throw new NotSupportedException("Needs Windows XP SP2, Server 2003 or later.");
-            }
-
-            // URI prefixes are required eg: "http://localhost:3000/calculate/"
-            if (prefixes == null || prefixes.Count == 0)
-            {
-                throw new ArgumentException("URI prefixes are required");
-            }
-
-            if (method == null)
-            {
-                throw new ArgumentException("responder method required");
-            }
+            ValidateParameters(method, prefixes);
 
             foreach (var s in prefixes)
             {
@@ -94,6 +75,25 @@ namespace Currency_calculator.WebServer
         {
             _listener.Stop();
             _listener.Close();
+        }
+
+        private static void ValidateParameters(Func<HttpListenerRequest, string> method, string[] prefixes)
+        {
+            if (!HttpListener.IsSupported)
+            {
+                throw new NotSupportedException("Needs Windows XP SP2, Server 2003 or later.");
+            }
+
+            // URI prefixes are required eg: "http://localhost:3000/calculate/"
+            if (prefixes == null || prefixes.Length == 0)
+            {
+                throw new ArgumentException("URI prefixes are required");
+            }
+
+            if (method == null)
+            {
+                throw new ArgumentException("responder method required");
+            }
         }
     }
 }
