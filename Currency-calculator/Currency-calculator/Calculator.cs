@@ -44,14 +44,14 @@ namespace Currency_calculator
             }
 
             // if the input is not a digit or one of the operators +-*/=, it is invalid.
-            if (!Regex.IsMatch(input.ToString(), @"[0-9+\-*/=]"))
+            if (!Regex.IsMatch(input, @"[0-9+\-*/=]"))
             {
                 throw new ArgumentException(
                 $"{input} is an invalid input.\nInput must be a digit between 0-9 or one of the operators +-*/=");
             }
 
             // when input is an operator
-            if (Regex.IsMatch(input.ToString(), @"[+\-*/=]"))
+            if (Regex.IsMatch(input, @"[+\-*/=]"))
             {
                 // if the last input was an operator then this is an invalid input,
                 // because two operators must be separated by numbers

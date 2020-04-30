@@ -12,16 +12,9 @@ namespace Currency_calculator.Tests
             var calculator = new Calculator();
             string jsonState = null;
 
-            //act
-            try
-            {
-                jsonState = calculator.CalculateNextState(jsonState, "11");
-            }
-            catch (Exception ex)
-            {
-                //assert
-                Assert.Equal("11 is an invalid input.\nInput must be only one character", ex.Message);
-            }
+            //act & assert
+            var ex = Assert.Throws<ArgumentException>(() => calculator.CalculateNextState(jsonState, "11"));
+            Assert.Equal("11 is an invalid input.\nInput must be only one character", ex.Message);
         }
 
         [Fact]
@@ -32,15 +25,8 @@ namespace Currency_calculator.Tests
             string jsonState = null;
 
             //act
-            try
-            {
-                jsonState = calculator.CalculateNextState(jsonState, "a");
-            }
-            catch (Exception ex)
-            {
-                //assert
-                Assert.Equal("a is an invalid input.\nInput must be a digit between 0-9 or one of the operators +-*/=", ex.Message);
-            }
+            var ex = Assert.Throws<ArgumentException>(() => calculator.CalculateNextState(jsonState, "a"));
+            Assert.Equal("a is an invalid input.\nInput must be a digit between 0-9 or one of the operators +-*/=", ex.Message);
         }
 
         [Fact]
@@ -53,15 +39,8 @@ namespace Currency_calculator.Tests
             jsonState = calculator.CalculateNextState(jsonState, "+");
 
             //act
-            try
-            {
-                jsonState = calculator.CalculateNextState(jsonState, "-");
-            }
-            catch (Exception ex)
-            {
-                //assert
-                Assert.Equal("Invalid input.\nTwo operators must be separated by numbers.", ex.Message);
-            }
+            var ex = Assert.Throws<ArgumentException>(() => calculator.CalculateNextState(jsonState, "-"));
+            Assert.Equal("Invalid input.\nTwo operators must be separated by numbers.", ex.Message);
         }
 
         [Fact]
@@ -74,15 +53,8 @@ namespace Currency_calculator.Tests
             jsonState = calculator.CalculateNextState(jsonState, "+");
 
             //act
-            try
-            {
-                jsonState = calculator.CalculateNextState(jsonState, "=");
-            }
-            catch (Exception ex)
-            {
-                //assert
-                Assert.Equal("Invalid input.\nTwo operators must be separated by numbers.", ex.Message);
-            }
+            var ex = Assert.Throws<ArgumentException>(() => calculator.CalculateNextState(jsonState, "="));
+            Assert.Equal("Invalid input.\nTwo operators must be separated by numbers.", ex.Message);
         }
 
         [Fact]
@@ -96,15 +68,8 @@ namespace Currency_calculator.Tests
             jsonState = calculator.CalculateNextState(jsonState, "0");
 
             //act
-            try
-            {
-                jsonState = calculator.CalculateNextState(jsonState, "=");
-            }
-            catch (Exception ex)
-            {
-                //assert
-                Assert.Equal(@"Attempted to divide by zero.", ex.Message);
-            }
+            var ex = Assert.Throws<DivideByZeroException>(() => calculator.CalculateNextState(jsonState, "="));
+            Assert.Equal(@"Attempted to divide by zero.", ex.Message);
         }
     }
 }
