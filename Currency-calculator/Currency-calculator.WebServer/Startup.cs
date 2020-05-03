@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using Currency_calculator.WebServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,38 +30,40 @@ namespace Currency_calculator.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapPost("/calculate", async context =>
-                {
-                    string stringRequest = string.Empty;
-                    using (Stream body = context.Request.Body)
-                    {
-                        if (body != null)
-                        {
-                            using (StreamReader reader = new StreamReader(body))
-                            {
-                                stringRequest = await reader.ReadToEndAsync();
-                            }
-                        }
-                    }
-
-                    string input = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).input;
-                    string calculatorState = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).calculatorState;
-
-                    var calculator = new Calculator();
-                    string jsonState;
-                    try
-                    {
-                        jsonState = calculator.CalculateNextState(calculatorState, input);
-                    }
-                    catch (Exception ex)
-                    {
-                        jsonState = ex.Message;
-                    }
-
-                    Console.WriteLine(jsonState);
-                    await context.Response.WriteAsync(jsonState);
-                });
+                endpoints.MapPost("/calculate", context => CalculateNextState(context));
             });
+        }
+
+        private static async Task CalculateNextState(HttpContext context)
+        {
+            string stringRequest = string.Empty;
+            using (Stream body = context.Request.Body)
+            {
+                if (body != null)
+                {
+                    using (StreamReader reader = new StreamReader(body))
+                    {
+                        stringRequest = await reader.ReadToEndAsync();
+                    }
+                }
+            }
+
+            string input = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).input;
+            string calculatorState = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).calculatorState;
+
+            var calculator = new Calculator();
+            string jsonState;
+            try
+            {
+                jsonState = calculator.CalculateNextState(calculatorState, input);
+            }
+            catch (Exception ex)
+            {
+                jsonState = ex.Message;
+            }
+
+            Console.WriteLine(jsonState);
+            await context.Response.WriteAsync(jsonState);
         }
     }
 }
