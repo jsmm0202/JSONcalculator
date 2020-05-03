@@ -62,7 +62,6 @@ namespace Currency_calculator.WebServer
                 jsonState = ex.Message;
             }
 
-            Console.WriteLine(jsonState);
             await context.Response.WriteAsync(jsonState);
         }
     }

@@ -20,7 +20,7 @@ namespace Currency_calculator.IntegrationTests
         }
 
         [Fact]
-        public async Task Get_EndpointsReturnSuccessAndBasicRequest()
+        public async Task Test_EndpointsReturnSuccess()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -31,6 +31,81 @@ namespace Currency_calculator.IntegrationTests
 
             Calculator calculator = new Calculator();
             string expectedResponse = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+
+            //// Act
+            var response = await client.PostAsync(uri, content);
+            string strResponse = response.Content.ReadAsStringAsync().Result;
+
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
+            Assert.Equal(expectedResponse, strResponse);
+        }
+
+        [Fact]
+        public async Task Test_inputIs1CalculatorStateIsNullShouldReturn1()
+        {
+            // Arrange
+            var client = _factory.CreateClient();
+            JsonRequest jsonRequest = new JsonRequest("1", null);
+            var myContent = JsonConvert.SerializeObject(jsonRequest);
+            Uri uri = new Uri("http://localhost:3000/calculate");
+            HttpContent content = new StringContent(myContent, Encoding.UTF8, "application/json");
+
+            Calculator calculator = new Calculator();
+            string expectedResponse = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+
+            //// Act
+            var response = await client.PostAsync(uri, content);
+            string strResponse = response.Content.ReadAsStringAsync().Result;
+
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
+            Assert.Equal(expectedResponse, strResponse);
+        }
+
+        [Fact]
+        public async Task Test_inputIs1CalculatorStateIs1ShouldReturn11()
+        {
+            // Arrange
+            JsonRequest jsonRequest = new JsonRequest("1", null);
+
+            Calculator calculator = new Calculator();
+            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+
+            var client = _factory.CreateClient();
+            var myContent = JsonConvert.SerializeObject(jsonRequest);
+            Uri uri = new Uri("http://localhost:3000/calculate");
+            HttpContent content = new StringContent(myContent, Encoding.UTF8, "application/json");
+
+            string expectedResponse = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+
+
+            //// Act
+            var response = await client.PostAsync(uri, content);
+            string strResponse = response.Content.ReadAsStringAsync().Result;
+
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
+            Assert.Equal(expectedResponse, strResponse);
+        }
+
+        [Fact]
+        public async Task Test_inputIsPlusCalculatorStateIs1ShouldReturn1()
+        {
+            // Arrange
+            JsonRequest jsonRequest = new JsonRequest("1", null);
+
+            Calculator calculator = new Calculator();
+            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.input = "+";
+
+            var client = _factory.CreateClient();
+            var myContent = JsonConvert.SerializeObject(jsonRequest);
+            Uri uri = new Uri("http://localhost:3000/calculate");
+            HttpContent content = new StringContent(myContent, Encoding.UTF8, "application/json");
+
+            string expectedResponse = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+
 
             //// Act
             var response = await client.PostAsync(uri, content);
