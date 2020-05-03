@@ -30,11 +30,11 @@ namespace Currency_calculator.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapPost("/calculate", context => CalculateNextState(context));
+                endpoints.MapPost("/calculate", context => CalculateRequest(context));
             });
         }
 
-        private static async Task CalculateNextState(HttpContext context)
+        private static async Task CalculateRequest(HttpContext context)
         {
             string stringRequest = string.Empty;
             using (Stream body = context.Request.Body)
