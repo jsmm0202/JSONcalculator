@@ -7,14 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency-calculator", "Curr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B0EA842B-30A1-4454-87E9-E7778584D897}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
+		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency_calculator.Tests", "Currency_calculator.Tests\Currency_calculator.Tests.csproj", "{960DA717-317E-41E2-AF9F-CE1BC93D3099}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency-calculator.WebServer", "Currency-calculator.WebServer\Currency-calculator.WebServer.csproj", "{2DAF867B-51F5-416C-AFFB-498EDFB49C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency-calculator.WebServer", "Currency-calculator.WebServer\Currency-calculator.WebServer.csproj", "{2DAF867B-51F5-416C-AFFB-498EDFB49C8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency-calculator.IntegrationTests", "Currency-calculator.IntegrationTests\Currency-calculator.IntegrationTests.csproj", "{1EF6C5D7-1F26-4EBF-B2E1-18336B9DF60C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency-calculator.IntegrationTests", "Currency-calculator.IntegrationTests\Currency-calculator.IntegrationTests.csproj", "{1EF6C5D7-1F26-4EBF-B2E1-18336B9DF60C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
