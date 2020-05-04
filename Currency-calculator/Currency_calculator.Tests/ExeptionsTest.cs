@@ -69,7 +69,7 @@ namespace Currency_calculator.Tests
 
             //act
             var ex = Assert.Throws<DivideByZeroException>(() => calculator.CalculateNextState(jsonState, "="));
-            Assert.Equal(@"Attempted to divide by zero.", ex.Message);
+            Assert.Equal("Attempted to divide by zero.", ex.Message);
         }
     }
 }
