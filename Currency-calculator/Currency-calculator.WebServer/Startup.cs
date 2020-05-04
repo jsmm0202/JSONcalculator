@@ -30,6 +30,12 @@ namespace Currency_calculator.WebServer
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync(@"Welcome to the amazing calculator!
+To get your calculations, send a post request to http://localhost:3000/calculate in the next format:
+{'calculatorState': null, 'input': '1'}");
+                });
                 endpoints.MapPost("/calculate", context => CalculateRequest(context));
             });
         }

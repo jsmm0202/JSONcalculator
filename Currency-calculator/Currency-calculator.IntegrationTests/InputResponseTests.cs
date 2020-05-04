@@ -245,7 +245,7 @@ namespace Currency_calculator.IntegrationTests
             // calculator state is 1 + 2 * (display: 2)
             jsonRequest.input = "4";
             jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
-            // calculator state is 1 + 2 * 4 (display: 2)
+            // calculator state is 1 + 2 * 4 (display: 4)
             jsonRequest.input = "=";
 
             var client = _factory.CreateClient();
