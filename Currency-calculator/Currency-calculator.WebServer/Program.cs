@@ -14,6 +14,7 @@ namespace Currency_calculator.WebServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("http://*:3000");
                     webBuilder.UseStartup<Startup>();
                 });
     }

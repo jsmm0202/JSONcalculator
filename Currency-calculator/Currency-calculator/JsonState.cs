@@ -10,10 +10,10 @@ namespace Currency_calculator
             IsLastInputAnEqualsOperator = false;
             Numbers = new List<int>();
             Operators = new List<char>();
-            Display = string.Empty;
+            display = string.Empty;
         }
 
-        public string Display { get; set; }
+        public string display { get; set; }
 
         public bool IsLastInputAnOperator { get; set; }
 

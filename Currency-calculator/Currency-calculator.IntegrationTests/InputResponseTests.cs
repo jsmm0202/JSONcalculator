@@ -23,7 +23,7 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_EndpointsReturnSuccess()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState) null);
 
             Calculator calculator = new Calculator();
 
@@ -47,7 +47,7 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIs1_CalculatorStateIsNull_ShouldReturn1()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
 
@@ -71,10 +71,10 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIs2_CalculatorStateIs1_ShouldReturn12()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "2";
 
@@ -99,10 +99,10 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIsPlus_CalculatorStateIs1_ShouldReturn1()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "+";
 
@@ -127,13 +127,13 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIs2_CalculatorStateIs1Plus_ShouldReturn2()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "+";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + (display: 1)
             jsonRequest.input = "2";
 
@@ -158,16 +158,16 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIsMultiply_CalculatorStateIs1Plus2_ShouldReturn2()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "+";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + (display: 1)
             jsonRequest.input = "2";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 (display: 2)
             jsonRequest.input = "*";
 
@@ -192,19 +192,19 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIs4_CalculatorStateIs1Plus2Multiply_ShouldReturn4()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "+";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + (display: 1)
             jsonRequest.input = "2";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 (display: 2)
             jsonRequest.input = "*";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 * (display: 2)
             jsonRequest.input = "4";
 
@@ -229,22 +229,22 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_inputIsEquals_CalculatorStateIs1Plus2Multiply4_ShouldReturn12()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "+";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + (display: 1)
             jsonRequest.input = "2";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 (display: 2)
             jsonRequest.input = "*";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 * (display: 2)
             jsonRequest.input = "4";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 * 4 (display: 4)
             jsonRequest.input = "=";
 
@@ -269,19 +269,19 @@ namespace Currency_calculator.IntegrationTests
         public async Task Test_newCalculationAfterEqualsSign_ShouldReturn1()
         {
             // Arrange
-            JsonRequest jsonRequest = new JsonRequest("1", null);
+            JsonRequest jsonRequest = new JsonRequest("1", (JsonState)null);
 
             Calculator calculator = new Calculator();
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 (display: 1)
             jsonRequest.input = "+";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + (display: 1)
             jsonRequest.input = "2";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 (display: 2)
             jsonRequest.input = "=";
-            jsonRequest.calculatorState = calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input);
+            jsonRequest.calculatorState = JsonConvert.DeserializeObject<JsonState>(calculator.CalculateNextState(jsonRequest.calculatorState, jsonRequest.input));
             // calculator state is 1 + 2 = (display: 3)
             jsonRequest.input = "1";
 

@@ -30,12 +30,12 @@ namespace Currency_calculator.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync(@"Welcome to the amazing calculator!
-To get your calculations, send a post request to http://localhost:3000/calculate in the next format:
-{'calculatorState': null, 'input': '1'}");
-                });
+//                endpoints.MapGet("/", async context =>
+//                {
+//                    await context.Response.WriteAsync(@"Welcome to the amazing calculator!
+//To get your calculations, send a post request to http://localhost:3000/calculate in the next format:
+//{'calculatorState': null, 'input': '1'}");
+//                });
                 endpoints.MapPost("/calculate", context => CalculateRequest(context));
             });
         }
@@ -54,20 +54,24 @@ To get your calculations, send a post request to http://localhost:3000/calculate
                 }
             }
 
+            // Console.WriteLine("DEBUG: Request is - {0}", stringRequest); // Only for debug
+
             string input = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).input;
-            string calculatorState = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).calculatorState;
+            JsonState jsonCalculatorState = JsonConvert.DeserializeObject<JsonRequest>(stringRequest).calculatorState;
 
             var calculator = new Calculator();
             string jsonState;
             try
             {
-                jsonState = calculator.CalculateNextState(calculatorState, input);
+                jsonState = calculator.CalculateNextState(jsonCalculatorState, input);
             }
             catch (Exception ex)
             {
                 jsonState = ex.Message;
             }
 
+            context.Response.ContentType = "application/json";
+            context.Response.ContentLength = jsonState.Length;
             await context.Response.WriteAsync(jsonState);
         }
     }

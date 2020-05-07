@@ -22,7 +22,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("3", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("3", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("6", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("6", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("70", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("70", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("9", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("9", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -98,7 +98,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("3", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("3", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -112,34 +112,34 @@ namespace Currency_calculator.Tests
 
             //act and assert
             jsonState = calculator.CalculateNextState(jsonState, "1");
-            Assert.Equal("1", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("1", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "+");
-            Assert.Equal("1", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("1", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "2");
-            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "*");
-            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "4");
-            Assert.Equal("4", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("4", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "-");
-            Assert.Equal("4", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("4", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "2");
-            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "/");
-            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "5");
-            Assert.Equal("5", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("5", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
 
             jsonState = calculator.CalculateNextState(jsonState, "=");
-            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("2", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -158,7 +158,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("12", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("12", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
 
         [Fact]
@@ -177,7 +177,7 @@ namespace Currency_calculator.Tests
             }
 
             //assert
-            Assert.Equal("253953", JsonConvert.DeserializeObject<JsonState>(jsonState).Display);
+            Assert.Equal("253953", JsonConvert.DeserializeObject<JsonState>(jsonState).display);
         }
     }
 }

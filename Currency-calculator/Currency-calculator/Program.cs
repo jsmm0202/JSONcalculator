@@ -18,7 +18,7 @@ namespace Currency_calculator
                 try
                 {
                     jsonState = calculator.CalculateNextState(jsonState, input);
-                    Console.WriteLine($"Displayed value: {JsonConvert.DeserializeObject<JsonState>(jsonState).Display}");
+                    Console.WriteLine($"Displayed value: {JsonConvert.DeserializeObject<JsonState>(jsonState).display}");
                 }
                 catch (Exception ex)
                 {
