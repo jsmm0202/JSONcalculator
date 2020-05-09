@@ -67,7 +67,11 @@ namespace Currency_calculator.WebServer
             }
             catch (Exception ex)
             {
-                jsonState = ex.Message;
+                JsonState errorJsonState = new JsonState();
+                errorJsonState.IsLastInputInvalid = true;
+                errorJsonState.display = "Invalid operation, reset";
+                Console.WriteLine(ex.Message);
+                jsonState = JsonConvert.SerializeObject(errorJsonState);
             }
 
             context.Response.ContentType = "application/json";

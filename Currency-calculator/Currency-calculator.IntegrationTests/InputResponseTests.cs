@@ -1,10 +1,10 @@
-using Currency_calculator.WebServer;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Currency_calculator.WebServer;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Currency_calculator.IntegrationTests

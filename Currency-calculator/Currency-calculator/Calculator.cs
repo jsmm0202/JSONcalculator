@@ -27,7 +27,7 @@ namespace Currency_calculator
                 jsonStateObj = JsonConvert.DeserializeObject<JsonState>(jsonState);
 
                 // if it is called after previous calculation is done, create a new object
-                if (jsonStateObj.IsLastInputAnEqualsOperator)
+                if (jsonStateObj.IsLastInputAnEqualsOperator || jsonStateObj.IsLastInputInvalid)
                 {
                     jsonStateObj = new JsonState();
                 }

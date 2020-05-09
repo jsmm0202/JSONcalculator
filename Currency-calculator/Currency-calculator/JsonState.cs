@@ -8,6 +8,7 @@ namespace Currency_calculator
         {
             IsLastInputAnOperator = false;
             IsLastInputAnEqualsOperator = false;
+            IsLastInputInvalid = false;
             Numbers = new List<int>();
             Operators = new List<char>();
             display = string.Empty;
@@ -18,6 +19,8 @@ namespace Currency_calculator
         public bool IsLastInputAnOperator { get; set; }
 
         public bool IsLastInputAnEqualsOperator { get; set; }
+
+        public bool IsLastInputInvalid { get; set; }
 
         public List<int> Numbers { get; set; }
 
