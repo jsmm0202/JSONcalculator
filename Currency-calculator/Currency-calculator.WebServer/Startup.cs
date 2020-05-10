@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Currency_calculator.WebServer
 {
@@ -26,16 +27,12 @@ namespace Currency_calculator.WebServer
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSerilogRequestLogging();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-//                endpoints.MapGet("/", async context =>
-//                {
-//                    await context.Response.WriteAsync(@"Welcome to the amazing calculator!
-//To get your calculations, send a post request to http://localhost:3000/calculate in the next format:
-//{'calculatorState': null, 'input': '1'}");
-//                });
                 endpoints.MapPost("/calculate", context => CalculateRequest(context));
             });
         }
@@ -70,7 +67,7 @@ namespace Currency_calculator.WebServer
                 JsonState errorJsonState = new JsonState();
                 errorJsonState.IsLastInputInvalid = true;
                 errorJsonState.display = "Invalid operation, reset";
-                Console.WriteLine(ex.Message);
+                Log.Error(ex.Message);
                 jsonState = JsonConvert.SerializeObject(errorJsonState);
             }
 
