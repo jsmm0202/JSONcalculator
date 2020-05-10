@@ -6,6 +6,12 @@ namespace Currency_calculator
 {
     public class Calculator
     {
+        public string CalculateNextState(JsonState jsonState, string input)
+        {
+            string calculatorState = (jsonState != null) ? JsonConvert.SerializeObject(jsonState) : null;
+            return CalculateNextState(calculatorState, input);
+        }
+
         public string CalculateNextState(string jsonState, string input)
         {
             JsonState jsonStateObj;
@@ -21,7 +27,7 @@ namespace Currency_calculator
                 jsonStateObj = JsonConvert.DeserializeObject<JsonState>(jsonState);
 
                 // if it is called after previous calculation is done, create a new object
-                if (jsonStateObj.IsLastInputAnEqualsOperator)
+                if (jsonStateObj.IsLastInputAnEqualsOperator || jsonStateObj.IsLastInputInvalid)
                 {
                     jsonStateObj = new JsonState();
                 }
@@ -88,11 +94,11 @@ namespace Currency_calculator
             // if the last input was an operator, we need to reset the display value
             if (jsonStateObj.IsLastInputAnOperator)
             {
-                jsonStateObj.Display = string.Empty;
+                jsonStateObj.display = string.Empty;
             }
 
             // add the new input to the existing value on the display
-            jsonStateObj.Display += inp;
+            jsonStateObj.display += inp;
 
             jsonStateObj.IsLastInputAnOperator = false;
         }
@@ -103,7 +109,7 @@ namespace Currency_calculator
             jsonStateObj.Operators.Add(inp);
 
             // add the last displayed number to the list of numbers
-            jsonStateObj.Numbers.Add(int.Parse(jsonStateObj.Display));
+            jsonStateObj.Numbers.Add(int.Parse(jsonStateObj.display));
 
             jsonStateObj.IsLastInputAnOperator = true;
         }
@@ -111,7 +117,7 @@ namespace Currency_calculator
         private void HandleEqualsOperator(JsonState jsonStateObj)
         {
             // add the last dispayed number to the list of numbers
-            jsonStateObj.Numbers.Add(int.Parse(jsonStateObj.Display));
+            jsonStateObj.Numbers.Add(int.Parse(jsonStateObj.display));
 
             // in a valid equation the number of numerals is grater by one than the number of operators
             if (jsonStateObj.Numbers.Count - 1 != jsonStateObj.Operators.Count)
@@ -142,7 +148,7 @@ namespace Currency_calculator
                 }
             }
 
-            jsonStateObj.Display = res.ToString();
+            jsonStateObj.display = res.ToString();
 
             jsonStateObj.IsLastInputAnEqualsOperator = true;
         }
