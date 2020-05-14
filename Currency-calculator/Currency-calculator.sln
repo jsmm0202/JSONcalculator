@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency-calculator.WebServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency-calculator.IntegrationTests", "Currency-calculator.IntegrationTests\Currency-calculator.IntegrationTests.csproj", "{1EF6C5D7-1F26-4EBF-B2E1-18336B9DF60C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency_calculator.E2ETests", "Currency_calculator.E2ETests\Currency_calculator.E2ETests.csproj", "{13BB3559-B265-4F4E-B4FA-3A1F8AB4F163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{1EF6C5D7-1F26-4EBF-B2E1-18336B9DF60C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EF6C5D7-1F26-4EBF-B2E1-18336B9DF60C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EF6C5D7-1F26-4EBF-B2E1-18336B9DF60C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13BB3559-B265-4F4E-B4FA-3A1F8AB4F163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13BB3559-B265-4F4E-B4FA-3A1F8AB4F163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13BB3559-B265-4F4E-B4FA-3A1F8AB4F163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13BB3559-B265-4F4E-B4FA-3A1F8AB4F163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
