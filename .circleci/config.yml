@@ -33,9 +33,9 @@ workflows:
     Calculator_Workflow:
         jobs:
             - run-docker-compose
-            - run-unit-tests
+            - run-unit-tests:
                 requires:
                     - run-docker-compose
-            - stop-docker-compose
+            - stop-docker-compose:
                 requires:
                     - run-unit-tests
